@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('mascotas','MascotaController');
+Route::get('starter_page', 'StarterController@starter')->name('starter');

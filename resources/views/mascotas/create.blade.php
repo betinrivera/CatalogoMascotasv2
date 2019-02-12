@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crear mascota</title>
-</head>
-<body>
+@extends('layouts.default')
+@section('contenido')
+@section('titulo','Mascotas Betin')
+@section('subtitulo', 'Las mascotas mas erizas xddxd')
+@section('titulo_pagina', 'MascotasBetin | Agregar Mascotas')
+
     <form action="{{route('mascotas.store')}}" method="post">
     @csrf
         <label>Especie</label>
@@ -28,5 +25,4 @@
         <br/><br/>
         <button required type="submit">Crear nueva mascota</button>
     </form>
-</body>
-</html>
+    @endsection

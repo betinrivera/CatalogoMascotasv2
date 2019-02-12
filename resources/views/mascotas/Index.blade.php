@@ -5,6 +5,8 @@
 @section('titulo_pagina', 'MascotasBetin | Lista de Mascotas')
 
 
+
+
 <div class="row">
     <div class="col-md-12">
         <div class="box">
@@ -13,22 +15,24 @@
             </div>
             <div class="box-body">
                 <a href="{{route('mascotas.create')}}">
-                    <button class="btn-primary">Agregar mascota</button>
+                    <button class="btn-primary" style="margin-bottom: 20px; margin-left: 20px">Agregar mascota</button>
                 </a>
+                @if(Session::has('exito'))
                         <div class="alert alert-success alert-dismissible" style="margin-top: 20px">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h4><i class="icon fa fa-check"></i> Listo!</h4>
-                        Success alert preview. This alert is dismissable.
+                        <h4><i class="icon fa fa-check"></i> Éxito!</h4>
+                        {{ Session::get('exito') }}
                         </div>
-
+                @endif
+                @if(Session::has('error'))
                         <div class="alert alert-danger alert-dismissible" style="margin-bottom: 20px">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                        Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
-                        soul, like these sweet mornings of spring which I enjoy with my whole heart.
+                        <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                        {{ Session::get('error') }}
                         </div>
+                @endif
 
-                    <table class="table">
+                    <table class="table table-hover" id="tablaMascotas">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -90,3 +94,22 @@
         </div>
     </div>
 </div>
+
+
+@section('estilos')
+<link rel="stylesheet" href="../../bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+@endsection
+
+@section('scripts')
+<!-- DataTables -->
+    <script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    
+<script>
+
+    $(function ()   {
+        $('#tablaMascotas').DataTable();
+    });
+
+</script>
+@endsection
